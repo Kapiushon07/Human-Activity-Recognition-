@@ -1,23 +1,18 @@
-#=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-#
-#                                   ES335- Machine Learning- Assignment 1
-#
 # This script combines the data from the UCI HAR Dataset into a more usable format.
 # The data is combined into a single csv file for each subject and activity. 
 # The data is then stored in the Combined folder.
-#
-#=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-# Library imports
+# NOTE : data wasnt uploaded to github due to file size exceeding 25 MB
+
 import pandas as pd
 import numpy as np
 import os
 
-# Give the path of the test and train folder of UCI HAR Dataset
+# path of the test and train folder of UCI HAR Dataset (couldnt upload dataset folder as its size is beyond 25 MB)
 train_path = "./UCI HAR Dataset/train"
 test_path = "./UCI HAR Dataset/test"
 
-# Dictionary of activities. Provided by the dataset.
+# Dictionary of activities available on the dataset.
 ACTIVITIES = {
     1: 'WALKING'            ,
     2: 'WALKING_UPSTAIRS'   ,
@@ -27,22 +22,18 @@ ACTIVITIES = {
     6: 'LAYING'             ,
 }
 
-#=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-                                        # Combining Traing Data
-#=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+# Combining Training Data ------------------------------------------------
 
 # Load all the accelerometer data
 total_acc_x = pd.read_csv(os.path.join(train_path,"Inertial Signals","total_acc_x_train.txt"),delim_whitespace=True,header=None)
 total_acc_y = pd.read_csv(os.path.join(train_path,"Inertial Signals","total_acc_y_train.txt"),delim_whitespace=True,header=None)
 total_acc_z = pd.read_csv(os.path.join(train_path,"Inertial Signals","total_acc_z_train.txt"),delim_whitespace=True,header=None)
 
-
 # Read the subject IDs
 subject_train = pd.read_csv(os.path.join(train_path,"subject_train.txt"),delim_whitespace=True,header=None)
 
 # Read the labels
 y = pd.read_csv(os.path.join(train_path,"y_train.txt"),delim_whitespace=True,header=None)
-
 
 # Toggle through all the subjects.
 for subject in np.unique(subject_train.values):
@@ -82,9 +73,7 @@ for subject in np.unique(subject_train.values):
 print("Done Combining the training data")
 
 
-#=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-                                        # Combining Test Data               
-#=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+# Combining Test Data  -----------------------------------------------------------
 
 # Load all the accelerometer data
 total_acc_x = pd.read_csv(os.path.join(test_path,"Inertial Signals","total_acc_x_test.txt"),delim_whitespace=True,header=None)
@@ -132,5 +121,3 @@ for subject in np.unique(subject_test.values):
 
 print("Done Combining the testing data")
 print("Done Combining the data")
-
-#-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
