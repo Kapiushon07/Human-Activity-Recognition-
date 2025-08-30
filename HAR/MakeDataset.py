@@ -1,14 +1,9 @@
-#=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-#
-#                                   ES335- Machine Learning- Assignment 1
-#
 # This file is used to create the dataset for the mini-project. The dataset is created by reading the data from
 # the Combined folder. The data is then split into training, testing, and validation sets. This split is supposed
 # to be used for all the modeling purposes.
-#
-#=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-# Library imports
+# NOTE : data wasnt uploaded to github due to file size exceeding 25 MB
+
 from sklearn.model_selection import train_test_split
 import pandas as pd
 import numpy as np
@@ -20,12 +15,11 @@ offset = 100
 folders = ["LAYING","SITTING","STANDING","WALKING","WALKING_DOWNSTAIRS","WALKING_UPSTAIRS"]
 classes = {"WALKING":1,"WALKING_UPSTAIRS":2,"WALKING_DOWNSTAIRS":3,"SITTING":4,"STANDING":5,"LAYING":6}
 
+# path of the MANUAL test and train folder Dataset (couldnt upload dataset folder as its size is beyond 25 MB)
 combined_dir = os.path.join("Combined")
 
-#=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-                                                # Train Dataset
-#=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+# Train Dataset --------------------------------------------------------------------------------------------
 X_train=[]
 y_train=[]
 dataset_dir = os.path.join(combined_dir,"Train")
@@ -44,9 +38,7 @@ X_train = np.array(X_train)
 y_train = np.array(y_train)
 
 
-#=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-                                                # Test Dataset
-#=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+# Test Dataset --------------------------------------------------------------------------------------------
 
 X_test=[]
 y_test=[]
@@ -64,11 +56,8 @@ for folder in folders:
 X_test = np.array(X_test)
 y_test = np.array(y_test)
 
-#=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-                                                # Final Dataset
-#=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-# USE THE BELOW GIVEN DATA FOR TRAINING and TESTING purposes
+# Final Dataset --------------------------------------------------------------------------------------------
 
 # concatenate the training and testing data
 X = np.concatenate((X_train,X_test))
@@ -80,7 +69,3 @@ X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=0.3,random_state=
 
 print("Training data shape: ",X_train.shape)
 print("Testing data shape: ",X_test.shape)
-
-#=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-
-
